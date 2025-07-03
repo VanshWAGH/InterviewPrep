@@ -1,12 +1,46 @@
-# React + Vite
+# 📚 AI-Powered Test Preparation App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A smart and personalized test preparation platform that helps students enhance their skills using the power of AI.  
+This app is built with a **backend powered by Appwrite** and uses **Google's Gemini API** to handle test generation and learning resource recommendations.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🔧 Tech Stack
 
-## Expanding the ESLint configuration
+- **Backend**: [Appwrite](https://appwrite.io/) (Authentication, Database, Functions)
+- **AI Integration**: [Gemini API](https://ai.google.dev/)
+- **Frontend**: React
+- **Chatbot**: Gemini-based smart assistant to help with test-related queries and feedback
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+---
+
+## 🎯 Features
+
+### 🔐 Authentication (Appwrite)
+- User Sign Up / Login
+- Session management
+  ![Screenshot 2025-07-03 212501](https://github.com/user-attachments/assets/5d296502-b3db-459a-b334-c6fa4ce5a15f)
+
+
+### 🧠 AI-Powered Test Generation
+- Tests are created and managed using Gemini API
+- Dynamically generated questions based on user level
+- Multiple choice questions, coding questions recommentions from leetcode and gfg, and case study-based questions
+  
+
+![Screenshot 2025-07-03 191913](https://github.com/user-attachments/assets/b5df719b-8b2c-4389-9eb6-170a366cd8da)
+
+### 🤖 Chat with Gemini
+- Personalized chatbot to guide users during preparation
+- Gemini API used with prompt tuning for educational tone
+  
+![Screenshot 2025-07-03 212834](https://github.com/user-attachments/assets/a5038098-16c7-466f-ab52-ee3241174f14)
+
+
+### 📑 Preparation Resources
+- A dedicated **Resources** page that:
+  - Fetches relevant **questions**, **articles**, and **explanations**
+  - All content is generated via Gemini API calls
+  - Categorized by subject/topic
+ 
+    ![Screenshot 2025-07-03 195450](https://github.com/user-attachments/assets/7b53f40a-ddd2-498b-8627-0e755aa768dc)
