@@ -1,19 +1,23 @@
 import React from 'react';
-import { BrowserRouter as Router } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Navigate, Outlet } from 'react-router-dom';
 import { Toaster } from 'react-hot-toast';
 import { AuthProvider, useAuth } from './contexts/AuthContext';
 import { ThemeProvider } from './contexts/ThemeContext';
 import AuthPage from './pages/AuthPage';
-import HomePage from './pages/HomePage';
+import EnhancedDashboard from './components/enhanced/EnhancedDashboard';
+import ResourcesPage from './pages/Resources';
+import TestSelector from './components/TestSelector'; // Import your TestSelector component
+import Navbar from './components/Navbar';
 import './App.css';
 
-
-console.log('Environment Variables:', {
-  endpoint: import.meta.env.VITE_APPWRITE_ENDPOINT,
-  projectId: import.meta.env.VITE_APPWRITE_PROJECT_ID,
-  databaseId: import.meta.env.VITE_DATABASE_ID,
-  appName: import.meta.env.VITE_APP_NAME
-});
+const AppLayout = () => {
+  return (
+    <>
+      <Navbar />
+      <AppContent />
+    </>
+  );
+};
 
 const AppContent = () => {
   const { user, loading } = useAuth();
@@ -26,7 +30,23 @@ const AppContent = () => {
     );
   }
 
-  return user ? <HomePage /> : <AuthPage />;
+  return (
+    <Routes>
+      <Route path="/" element={user ? <Navigate to="/dashboard" replace /> : <AuthPage />} />
+      
+      {/* Dashboard layout route */}
+      <Route path="/dashboard" element={<EnhancedDashboard />}>
+        {/* Nested routes */}
+        <Route index element={<div>Dashboard Home</div>} />
+        <Route path="resources" element={<ResourcesPage />} />
+        <Route path="tests" element={<TestSelector />} /> {/* Add TestSelector route */}
+        {/* Add more nested routes as needed */}
+      </Route>
+      
+      {/* Redirect any unmatched routes */}
+      <Route path="*" element={<Navigate to="/" replace />} />
+    </Routes>
+  );
 };
 
 function App() {
@@ -34,7 +54,7 @@ function App() {
     <ThemeProvider>
       <AuthProvider>
         <Router>
-          <AppContent />
+          <AppLayout />
           <Toaster
             position="top-right"
             toastOptions={{
